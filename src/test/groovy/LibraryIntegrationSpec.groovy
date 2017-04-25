@@ -3,10 +3,19 @@ import spock.lang.Unroll
 
 @Unroll
 class LibraryIntegrationSpec extends Specification {
-    def 'can call sayHello library method'() {
+
+    def 'can say hello to #sayHelloReceiver'() {
+
         when:
         def library = new Library()
         then:
-        library.sayHelloTo("World") == "Hello World!"
+        library.sayHelloTo(sayHelloReceiver) == "Hello $sayHelloReceiver!"
+
+        where:
+        sayHelloReceiver         | _
+        "Earth"                  | _
+        "World"                  | _
+        "Universe"               | _
     }
+
 }
